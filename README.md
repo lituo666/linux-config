@@ -9,7 +9,7 @@ Ubuntu 20.04 LTS 配置脚本
 git clone git://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
 ```
 
-打开`.zshrc`添加`zsh-autosuggestion`
+打开`.zshrc`添加`zsh-autosuggestions`
 ```
-plugins=(git zsh-autosuggestion)
+plugins=(git zsh-autosuggestions)
 ```
