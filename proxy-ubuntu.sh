@@ -1,6 +1,7 @@
 #!/bin/sh
-hostip=192.168.123.119
-port=63323
+# 修改代理地址和端口号
+hostip=192.168.0.150
+port=7890
 
 PROXY_HTTP="http://${hostip}:${port}"
 
