@@ -50,7 +50,7 @@ source ./proxy-ubuntu.sh unset
 source ./proxy-ubuntu.sh test
 ```
 ## WSL2 代理配置
-修改`proxy-ubuntu.sh`中的端口，然后保存，使用方法和上面介绍相同。
+修改`proxy-wsl2.sh`中的端口，然后保存，使用方法和上面介绍相同。
 
 第一次使用需要设置Windows主机的防火墙：
 
