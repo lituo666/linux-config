@@ -18,6 +18,11 @@ set_proxy(){
     git config --global https.proxy "${PROXY_HTTP}"
 }
 
+set_proxy_git(){
+    git config --global http.proxy "${PROXY_HTTP}"
+    git config --global https.proxy "${PROXY_HTTP}"
+}
+
 unset_proxy(){
     unset http_proxy
     unset HTTP_PROXY
@@ -35,7 +40,9 @@ test_setting(){
 if [ "$1" = "set" ]
 then
     set_proxy
-
+elif [ "$1" = "setgit" ]
+then
+    set_proxy_git
 elif [ "$1" = "unset" ]
 then
     unset_proxy

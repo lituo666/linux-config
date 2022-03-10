@@ -1,7 +1,7 @@
 #!/bin/sh
 hostip=$(cat /etc/resolv.conf | grep nameserver | awk '{ print $2 }')
 wslip=$(hostname -I | awk '{print $1}')
-port=63323
+port=7890
 
 PROXY_HTTP="http://${hostip}:${port}"
 
@@ -14,6 +14,11 @@ set_proxy(){
 
     export all_proxy="socks5://${hostip}:${port}"
 
+    git config --global http.proxy "${PROXY_HTTP}"
+    git config --global https.proxy "${PROXY_HTTP}"
+}
+
+set_proxy_git(){
     git config --global http.proxy "${PROXY_HTTP}"
     git config --global https.proxy "${PROXY_HTTP}"
 }
@@ -36,7 +41,9 @@ test_setting(){
 if [ "$1" = "set" ]
 then
     set_proxy
-
+elif [ "$1" = "setgit" ]
+then
+    set_proxy_git
 elif [ "$1" = "unset" ]
 then
     unset_proxy
