@@ -126,3 +126,24 @@ PING 172.28.240.1 (172.28.240.1) 56(84) bytes of data.
 64 bytes from 172.28.240.1: icmp_seq=3 ttl=128 time=0.340 ms
 ```
 注意：完成上一步防火墙入站规则后，从WSL2 ping主机的ip应该可以ping通了。
+
+
+## Manjaro 使用记录
+
+### 安装中文输入法
+
+```
+sudo pacman -S fcitx fcitx-im kcm-fcitx
+```
+
+配置fcitx，打开`kate /etc/profile`最后添加
+
+```
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS="@im=fcitx"
+```
+
+然后注销或者重启后，应该在右下角可以看到键盘打图标。
+
+在键盘图标上右键选择`配置`就可以选择输入法了，切换输入法按`ctrl+空格`
