@@ -130,6 +130,22 @@ PING 172.28.240.1 (172.28.240.1) 56(84) bytes of data.
 
 ## Manjaro 使用记录
 
+### 常用命令
+
+pacman 用法
+
+```
+sudo pacman -Syu 更新系统
+```
+
+yay用法
+
+下载软件：`yay -S 软件名`
+
+卸载软件：`yay -R 软件名`
+
+搜索软件：`yay -Ss 软件模糊名`
+
 ### 安装中文输入法
 
 ```
@@ -147,3 +163,17 @@ export XMODIFIERS="@im=fcitx"
 然后注销或者重启后，应该在右下角可以看到键盘打图标。
 
 在键盘图标上右键选择`配置`就可以选择输入法了，切换输入法按`ctrl+空格`
+
+### 安装常用软件
+
+```
+sudo pacman -S yay vim
+```
+
+### 安装wps
+
+```
+yay -S wps-office-cn wps-office-mui-zh-cn ttf-wps-fonts
+```
+
+
