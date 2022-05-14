@@ -2,6 +2,7 @@
 # 修改代理地址和端口号
 hostip=192.168.0.150
 port=7890
+socks5port=7891
 
 PROXY_HTTP="http://${hostip}:${port}"
 
@@ -12,15 +13,15 @@ set_proxy(){
     export https_proxy="${PROXY_HTTP}"
     export HTTPS_proxy="${PROXY_HTTP}"
 
-    export all_proxy="socks5://${hostip}:${port}"
+    export all_proxy="socks5://${hostip}:${socks5port}"
 
-    git config --global http.proxy "${PROXY_HTTP}"
-    git config --global https.proxy "${PROXY_HTTP}"
+    git config --global http.proxy "${all_proxy}"
+    git config --global https.proxy "${all_proxy}"
 }
 
 set_proxy_git(){
-    git config --global http.proxy "${PROXY_HTTP}"
-    git config --global https.proxy "${PROXY_HTTP}"
+    git config --global http.proxy "${all_proxy}"
+    git config --global https.proxy "${all_proxy}"
 }
 
 unset_proxy(){
@@ -28,6 +29,7 @@ unset_proxy(){
     unset HTTP_PROXY
     unset https_proxy
     unset HTTPS_PROXY
+    unset all_proxy
 
     git config --global --unset http.proxy
     git config --global --unset https.proxy
