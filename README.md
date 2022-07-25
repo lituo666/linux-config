@@ -149,7 +149,7 @@ yay用法
 ### 安装中文输入法
 
 ```
-sudo pacman -S fcitx fcitx-im kcm-fcitx
+sudo pacman -S fcitx fcitx-libpinyin kcm-fcitx
 ```
 
 配置fcitx，打开`kate /etc/profile`最后添加
@@ -163,6 +163,16 @@ export XMODIFIERS="@im=fcitx"
 然后注销或者重启后，应该在右下角可以看到键盘打图标。
 
 在键盘图标上右键选择`配置`就可以选择输入法了，切换输入法按`ctrl+空格`
+
+### 启用AUR源
+
+找到`删除/添加软件`这个程序。
+
+![AUR-1](./images/AUR-1.png)
+
+![AUR-2](./images/AUR-2.png)
+
+![AUR-3](./images/AUR-3.png)
 
 ### 安装常用软件
 
