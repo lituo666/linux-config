@@ -216,4 +216,11 @@ grub rescue > normal
 
 ```
 sudo update-grub
+sudo grub-install
+```
+
+如果出现这个错误`/usr/bin/grub-probe：警告： 未知的设备类型 nvme1n1.`，可以将`/etc/grub.d/60_memtest86+`文件删除
+
+```
+sudo rm -rf /etc/grub.d/60_memtest86+
 ```
