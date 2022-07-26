@@ -185,3 +185,35 @@ sudo pacman -S yay vim
 ```
 yay -S wps-office-cn wps-office-mui-zh-cn ttf-wps-fonts
 ```
+
+### 再生龙恢复后无法启动
+
+1. 使用命令`ls`查看分区，会出现如下字样：
+
+`(hd0) (hd0,msdos9) (hd0,msdos8) (hd0,msdos7) (hd0,msdos6) (hd0,msdos5) (hd0,msdos2) (hd0,msdos1)`
+
+注：上面是我的分区设备，每个人可能不一样，但原理都是一样的。
+
+2. 寻找ubuntu所在分区：（就是寻找你的Linux系统是装在以上哪个分区里）
+
+`grub rescue> ls (hd0,msdos1)/`
+
+若出现的是你的ubuntu主文件夹下的文件夹和文件的名字，那就是的要找的分区了。
+
+3. 修改启动分区：
+
+（假如你找到的启动分区是hd0,msdos8）
+
+```
+grub rescue > set root=(hd0,msdos8)
+grub rescue > set prefix=(hd0,msdos8)/boot/grub
+grub rescue > insmod normal                            //启动normal启动
+grub rescue > normal
+```
+之后你就会看到熟悉的启动菜单栏了
+
+4. 进入系统后运行以下命令
+
+```
+sudo update-grub
+```
