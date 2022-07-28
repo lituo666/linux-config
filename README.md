@@ -241,12 +241,6 @@ sudo rm -rf /etc/grub.d/60_memtest86+
 setfont /usr/share/kbd/consolefonts/sun12x22.psfu.gz
 ```
 
-### 禁止自动更新服务器列表
-
-```
-systemctl stop reflector.service
-```
-
 ### 无线网络连接
 
 ```
@@ -258,9 +252,19 @@ station wlan0 connect 无线网名字        #连接网络名字 输入密码
 exit或者quit                            #成功后退出
 ```
 
-### 创建分区
+### 禁止自动更新服务器列表
 
+```
+systemctl stop reflector.service
+```
 
+### 设置时间
+
+```
+timedatectl set-timezone Asia/Shanghai
+timedatectl set-ntp 1
+date
+```
 
 ### 更新密钥环
 
@@ -269,14 +273,53 @@ pacman -Syy
 pacman -S archlinux-keyring
 ```
 
+### 创建分区
+
+
+
+
 ### 挂载
 ```
-pacstrap /mnt base base-devel linux linux-firmware dhcpcd iwd vim sudo bash-completion net-tools openssh man git wget zsh fish
+mount /dev/sda2 /mnt
+mkdir /mnt/home
+mkdir /mnt/boot
+mount /dev/sda1 /mnt/boot
+mount /dev/sda3 /mnt/home
 ```
+
+### 安装
+
+```
+pacstrap /mnt base base-devel linux linux-firmware dhcpcd iwd networkmanager sudo vim zsh zsh-completions net-tools openssh man git wget ntfs-3g grub efibootmgr os-prober
+```
+
+### 进入系统
+
+```
+arch-chroot /mnt
+```
+
+### 安装一些常用工具
+
+```
+pacman -Syy
+pacman -S archlinux-keyring
+```
+
+### 添加archlinuxcn源
+
+在文件/etc/pacman.conf文件中添加
+```
+[archlinuxcn]
+Server = https://mirrors.bfsu.edu.cn/archlinuxcn/$arch
+```
+
+然后运行`sudo pacman -Sy archlinuxcn-keyring`
+
 
 ### 安装 gnome 桌面
 
 ```
 pacman -Syy
-pacman -Sy gnome gnome-extra networkmanager
+pacman -Sy wqy-zenhei gnome gnome-extra 
 ```
