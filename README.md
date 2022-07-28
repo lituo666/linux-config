@@ -273,3 +273,10 @@ pacman -S archlinux-keyring
 ```
 pacstrap /mnt base base-devel linux linux-firmware dhcpcd iwd vim sudo bash-completion net-tools openssh man git wget zsh fish
 ```
+
+### 安装 gnome 桌面
+
+```
+pacman -Syy
+pacman -Sy gnome gnome-extra networkmanager
+```
