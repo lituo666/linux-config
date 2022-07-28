@@ -186,6 +186,14 @@ sudo pacman -S yay vim
 yay -S wps-office-cn wps-office-mui-zh-cn ttf-wps-fonts
 ```
 
+### 开机自动启用数字键
+
+```
+sudo vim /etc/sddm.conf
+```
+
+将其中的`Numlock=none`改为`Numlock=no`即可。
+
 ### 再生龙恢复后无法启动
 
 1. 使用命令`ls`查看分区，会出现如下字样：
