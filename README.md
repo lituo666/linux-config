@@ -232,3 +232,44 @@ sudo grub-install
 ```
 sudo rm -rf /etc/grub.d/60_memtest86+
 ```
+
+## ArchLinux安装记录
+
+### 设置大字体
+
+```
+setfont /usr/share/kbd/consolefonts/sun12x22.psfu.gz
+```
+
+### 禁止自动更新服务器列表
+
+```
+systemctl stop reflector.service
+```
+
+### 无线网络连接
+
+```
+iwctl                                   #执行iwctl命令，进入交互式命令行
+device list                             #列出设备名，比如无线网卡看到叫 wlan0
+station wlan0 scan                      #用wlan0网卡扫描网络
+station wlan0 get-networks              #列出网络
+station wlan0 connect 无线网名字        #连接网络名字 输入密码
+exit或者quit                            #成功后退出
+```
+
+### 创建分区
+
+
+
+### 更新密钥环
+
+```
+pacman -Syy
+pacman -S archlinux-keyring
+```
+
+### 挂载
+```
+pacstrap /mnt base base-devel linux linux-firmware dhcpcd iwd vim sudo bash-completion net-tools openssh man git wget zsh fish
+```
