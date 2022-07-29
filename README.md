@@ -252,6 +252,8 @@ station wlan0 connect 无线网名字        #连接网络名字 输入密码
 exit或者quit                            #成功后退出
 ```
 
+如果使用上面命令无法连接就需要使用命令`rfkill unblock wifi`，然后再重复上面操作。
+
 ### 禁止自动更新服务器列表
 
 ```
@@ -259,6 +261,8 @@ systemctl stop reflector.service
 ```
 
 ### 设置时间
+
+必须先设置时区然后再使能ntp。
 
 ```
 timedatectl set-timezone Asia/Shanghai
@@ -275,11 +279,31 @@ pacman -S archlinux-keyring
 
 ### 创建分区
 
+使用命令`cfdisk /dev/sdx`
 
+### 格式化分区
 
+```
+mkswap /dev/sdxn
+mkfs.btrfs -L myArch /dev/sdxn
+```
 
 ### 挂载
+
+#### 文件系统为btrfs
+
+```bash
+mount -t btrfs -o subvol=/@,compress=zstd /dev/sdxn /mnt # 挂载 / 目录
+mkdir /mnt/home               # 创建 /home 目录
+mount -t btrfs -o subvol=/@home,compress=zstd /dev/sdxn /mnt/home # 挂载 /home 目录
+mkdir -p /mnt/boot            # 创建 /boot 目录
+mount /dev/sdxn /mnt/boot     # 挂载 /boot 目录
+swapon /dev/sdxn              # 挂载交换分区
 ```
+
+#### 文件系统是ext4
+
+```bash
 mount /dev/sda2 /mnt
 mkdir /mnt/home
 mkdir /mnt/boot
@@ -289,11 +313,25 @@ mount /dev/sda3 /mnt/home
 
 ### 安装
 
+必须安装的
+
 ```
-pacstrap /mnt base base-devel linux linux-firmware dhcpcd iwd networkmanager sudo vim zsh zsh-completions net-tools openssh man git wget ntfs-3g grub efibootmgr os-prober
+pacstrap /mnt base base-devel linux linux-firmware
 ```
 
-### 进入系统
+常用的
+
+```
+pacstrap /mnt dhcpcd iwd vim zsh zsh-completions openssh man git wget ntfs-3g grub efibootmgr os-prober
+```
+
+### 生成 fstab 文件
+
+```
+genfstab -U /mnt > /mnt/etc/fstab
+```
+
+### change root
 
 ```
 arch-chroot /mnt
@@ -306,6 +344,40 @@ pacman -Syy
 pacman -S archlinux-keyring
 ```
 
+### 安装引导程序
+
+```
+pacman -S grub efibootmgr os-prober
+```
+
+安装 GRUB 到 EFI 分区：
+
+```
+grub-install --efi-directory=/boot --bootloader-id=ArchLinux
+```
+
+修改`/etc/default/grub`文件
+
+```
+vim /etc/default/grub
+```
+
+打开`GRUB_DISABLE_OS_PROBER=false`这项
+
+最后生成 GRUB 所需的配置文件：
+
+```
+grub-mkconfig -o /boot/grub/grub.cfg
+```
+
+### 安装 gnome 桌面
+
+```
+pacman -Syy
+pacman -Sy wqy-zenhei gnome gnome-extra 
+```
+
+
 ### 添加archlinuxcn源
 
 在文件/etc/pacman.conf文件中添加
@@ -316,10 +388,3 @@ Server = https://mirrors.bfsu.edu.cn/archlinuxcn/$arch
 
 然后运行`sudo pacman -Sy archlinuxcn-keyring`
 
-
-### 安装 gnome 桌面
-
-```
-pacman -Syy
-pacman -Sy wqy-zenhei gnome gnome-extra 
-```
