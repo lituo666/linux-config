@@ -21,6 +21,8 @@ ip route del default
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
+按照这篇教程配置即可：[打造程序员完美的终端环境，颜值爆表，效率 X 10倍](https://vikingz.me/best-terminal-setup/)
+
 ## zsh-autosuggestion 自动补全
 安装完zsh后
 ```
