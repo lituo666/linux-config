@@ -388,3 +388,9 @@ Server = https://mirrors.bfsu.edu.cn/archlinuxcn/$arch
 
 然后运行`sudo pacman -Sy archlinuxcn-keyring`
 
+### 常用软件
+
+```
+yay visual-studio-code-bin microsoft-edge-stable-bin
+```
+
