@@ -471,7 +471,8 @@ Server = https://mirrors.bfsu.edu.cn/archlinuxcn/$arch
 ### 常用软件
 
 ```
-yay visual-studio-code-bin microsoft-edge-stable-bin
+sudo pacman -S kate filelight ark kcalc spectacle vlc
+yay visual-studio-code-bin microsoft-edge-stable-bin wps-office-cn ttf-wps-fonts wps-office-mui-zh-cn yesplaymusic
 ```
 
 ### 蓝牙问题
