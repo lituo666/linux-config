@@ -474,3 +474,8 @@ Server = https://mirrors.bfsu.edu.cn/archlinuxcn/$arch
 yay visual-studio-code-bin microsoft-edge-stable-bin
 ```
 
+### 蓝牙问题
+
+```
+sudo pacman -S bluez bluez-utils
+```
