@@ -322,7 +322,7 @@ pacstrap /mnt base base-devel linux linux-firmware
 常用的
 
 ```
-pacstrap /mnt dhcpcd iwd vim zsh zsh-completions openssh man git wget ntfs-3g grub efibootmgr os-prober
+pacstrap /mnt dhcpcd iwd vim zsh zsh-completions openssh man git wget ntfs-3g grub efibootmgr os-prober btrfs-progs 
 ```
 
 ### 生成 fstab 文件
