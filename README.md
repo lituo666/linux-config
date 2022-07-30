@@ -331,6 +331,12 @@ pacstrap /mnt dhcpcd iwd vim zsh zsh-completions openssh man git wget ntfs-3g gr
 genfstab -U /mnt > /mnt/etc/fstab
 ```
 
+**然后必须进行如下修改：**
+
+**删除 `/` 和 `/home` 条目中最后的 `subvolid=xxx` 参数。**
+
+**否则在使用 timeshift 进行恢复时会无法进入系统。**
+
 ### change root
 
 ```
@@ -368,6 +374,80 @@ vim /etc/default/grub
 
 ```
 grub-mkconfig -o /boot/grub/grub.cfg
+```
+
+### 使用 timeshift 进行备份
+
+重启进入系统后，安装必要软件：
+
+```
+pacman -Sy timeshift btrfs-progs
+```
+
+切换为 btrfs 模式，同时会自动生成配置文件
+```
+timeshift --btrfs
+```
+
+打开配置文件`/etc/timeshift/timeshift.json`，下面是其中主要项目说明
+
+```
+{
+  "backup_device_uuid" : "a99599f4-3acd-4c8d-8f7e-82a5df35b22e",    // 一般会自动生成
+  "parent_device_uuid" : "",
+  "do_first_run" : "false",
+  "btrfs_mode" : "true",    // 确认是 true
+  "include_btrfs_home_for_backup" : "true",  // 备份是否包括home目录
+  "include_btrfs_home_for_restore" : "true", // 恢复是否包换home目录
+  "stop_cron_emails" : "true",
+  "schedule_monthly" : "false",
+  "schedule_weekly" : "false",
+  "schedule_daily" : "false",
+  "schedule_hourly" : "false",
+  "schedule_boot" : "false",
+  "count_monthly" : "2",
+  "count_weekly" : "3",
+  "count_daily" : "5",
+  "count_hourly" : "6",
+  "count_boot" : "5",
+  "snapshot_size" : "0",
+  "snapshot_count" : "0",
+  "date_format" : "%Y-%m-%d %H:%M:%S",
+  "exclude" : [],
+  "exclude-apps" : []
+}
+```
+
+备份
+
+```
+timeshift --create --comments "shuo ming"
+```
+
+恢复
+
+```
+timeshift --restore
+```
+
+### btrfs 常用命令
+
+挂载 btrfs 分区
+
+```
+sudo mount /dev/nvme1n1p4 /mnt
+```
+
+查看 btrfs 子卷
+
+```
+sudo btrfs subvolume list -u /
+```
+
+删除 btrfs 子卷
+
+```
+sudo btrfs subvolume delete /上一步看到的子卷
 ```
 
 ### 安装 gnome 桌面
