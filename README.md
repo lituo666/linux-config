@@ -479,3 +479,18 @@ yay visual-studio-code-bin microsoft-edge-stable-bin
 ```
 sudo pacman -S bluez bluez-utils
 ```
+
+### 安装输入法
+
+首先必须先按照 [输入法教程](https://arch.icekylin.online/advanced/optional-cfg-1.html#%F0%9F%8D%80%EF%B8%8F-%E8%BE%93%E5%85%A5%E6%B3%95) 安装好 [🍀️四叶草拼音输入方案](https://github.com/fkxxyz/rime-cloverpinyin)。
+
+然后从这个 [rime-cloverpinyin](https://github.com/so1ar/rime-cloverpinyin) 项目中下载 `clover-flypy.schema.yaml` 文件，放到目录 `~/.local/share/fcitx5/rime` 下面，
+
+或者直接使用下面命令下载到指定目录：
+
+```
+wget -P ~/.local/share/fcitx5/rime https://raw.githubusercontent.com/so1ar/rime-cloverpinyin/main/src/clover-flypy.schema.yaml
+```
+
+然后修改 `default.custom.yaml` 文件中的 `clover` 为 `clover-flypy` 后重新部署即可。
+
