@@ -474,7 +474,7 @@ Server = https://mirrors.bfsu.edu.cn/archlinuxcn/$arch
 
 ```
 sudo pacman -S kate filelight ark kcalc spectacle vlc
-yay visual-studio-code-bin microsoft-edge-stable-bin wps-office-cn ttf-wps-fonts wps-office-mui-zh-cn yesplaymusic
+yay visual-studio-code-bin microsoft-edge-stable-bin wps-office-cn ttf-wps-fonts wps-office-mui-zh-cn yesplaymusic tabby-bin
 ```
 
 ### 蓝牙问题
