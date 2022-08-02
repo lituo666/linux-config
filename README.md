@@ -15,24 +15,30 @@ ip route add default via 192.168.0.121
 删除默认网关
 ip route del default
 ```
-## 安装ohmyzsh
+
+## 安装 powerlevel10k
+
+安装 zim 框架
 
 ```
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+curl -fsSL https://raw.githubusercontent.com/zimfw/install/master/install.zsh | zsh
 ```
 
-按照这篇教程配置即可：[打造程序员完美的终端环境，颜值爆表，效率 X 10倍](https://vikingz.me/best-terminal-setup/)
+编辑配置文件`vim ~/.zimrc`，在最后添加：
 
-## zsh-autosuggestion 自动补全
-安装完zsh后
 ```
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+zmodule romkatv/powerlevel10k --use degit
 ```
 
-打开`.zshrc`添加`zsh-autosuggestions`
-```
-plugins=(git zsh-autosuggestions)
-```
+然后运行` zimfw install `进行安装。
+
+运行 `p10k configure` 进行配置。需要下面这4个字体：
+
+[MesloLGS NF Regular.ttf](https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf)  
+[MesloLGS NF Bold.ttf](https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf)  
+[MesloLGS NF Italic.ttf](https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf)  
+[MesloLGS NF Bold Italic.ttf](https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf)  
+
 ## Ubuntu 使用代理服务器使用方法
 ### 修改`proxy-ubuntu.sh`中的地址和端口，然后保存
 ```
